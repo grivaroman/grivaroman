@@ -52,6 +52,12 @@ Booking backend for event vendors. Multi-role JWT auth, booking and scheduling e
 Microservices backend for video streaming. An HLS ABR ladder whose rungs are defined by the short side, with the long side derived from the source aspect ratio — vertical and horizontal sources each encode to their own geometry, no letterboxing, no upscaling — and closed GOPs with keyframes aligned to segment boundaries so the renditions are actually switchable.
 `Node.js · microservices · gRPC · ffmpeg · Kubernetes`
 
+### 🎬 [DURUSAI Studio](https://durusaistudio.com/#/home) — script-to-video product
+🌐 Live: [durusaistudio.com](https://durusaistudio.com/#/home)
+
+The product surface over the pipeline below. The front end is plain ES modules — no bundler, no framework, no dependencies — because the whole thing is a thin shell over a generation backend, and a build step would have been the heaviest part of it. Every screen is exercised in Node against a DOM stub, so the test suite runs without a browser. Mock and live backends swap on one config flag.
+`JavaScript (ES modules) · Docker · Nginx`
+
 ### 🎥 video_pipeline — AI video generation service
 FastAPI service turning a script into a finished video. What I'm proudest of is the instrumentation around money and quality: retry budgets derived from the measured cost of an attempt (balance delta, not a price list that silently goes stale), money guards raised as `BaseException` so best-effort `except Exception` blocks can't swallow them, regenerated panels marking downstream work `stale` rather than cascading a rebuild, and an A/V sync probe with asymmetric thresholds per ITU-R BT.1359 that distinguishes a fixed offset from clock drift.
 `Python · FastAPI · SQLAlchemy · ffmpeg · MCP`
